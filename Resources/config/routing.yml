@@ -1,0 +1,4 @@
+efi_maintenance:
+    resource: "@EfiMaintenanceBundle/Controller/"
+    type:     annotation
+    prefix:   /

@@ -1,0 +1,4 @@
+efi.maintenance.messages:
+    under_construction:
+        description: Website is currently under construction, please come back later.
+        title: Under construction

@@ -1,0 +1,9 @@
+services:
+    efi.maintenance.maintenance_listener:
+        class: Efi\MaintenanceBundle\EventListener\MaintenanceListener
+        arguments:
+            - "@security.token_storage"
+            - "@security.authorization_checker"
+            - "@router"
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

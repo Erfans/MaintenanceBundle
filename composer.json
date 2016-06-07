@@ -1,0 +1,24 @@
+{
+    "name": "efi/maintenance-bundle",
+    "type": "symfony-bundle",
+    "description": "EfiMaintenanceBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Erfans",
+            "homepage": "https://github.com/Erfans"
+        }
+    ],
+    "require": {
+        "php":                      ">=5.3.3",
+        "symfony/framework-bundle": "~2.3|~3.0"
+    },
+    "autoload": {
+        "psr-4": { "Efi\\MaintenanceBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
