@@ -1,6 +1,6 @@
 <?php
 
-namespace Efi\MaintenanceBundle\Tests\Controller;
+namespace Erfans\MaintenanceBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

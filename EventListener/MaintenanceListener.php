@@ -6,7 +6,7 @@
  * Time: 13:46
  */
 
-namespace Efi\MaintenanceBundle\EventListener;
+namespace Erfans\MaintenanceBundle\EventListener;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -131,7 +131,7 @@ class MaintenanceListener
         }
 
         // add maintenance route to authorized routes
-        $maintenanceRoute = ["efi_maintenance_maintenance"];
+        $maintenanceRoute = ["erfans_maintenance_maintenance"];
         $this->authorizedAreas["routes"] = isset($this->authorizedAreas["routes"]) ?
             array_merge($this->authorizedAreas["routes"], $maintenanceRoute) :
             $maintenanceRoute;
@@ -155,7 +155,7 @@ class MaintenanceListener
         }
 
         // O.W. redirect to maintenance page
-        $redirectUrl = $this->router->generate("efi_maintenance_maintenance");
+        $redirectUrl = $this->router->generate("erfans_maintenance_maintenance");
         $event->setController(
             function () use ($redirectUrl) {
                 return new RedirectResponse($redirectUrl);

@@ -35,7 +35,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new Efi\MaintenanceBundle\EfiMaintenanceBundle()(),
+            new Erfans\MaintenanceBundle\ErfansMaintenanceBundle()(),
         );
 
         // ...
@@ -49,15 +49,15 @@ Step 3: Add Routing
 -------------------
 Add below code to `app/config/routing.yml`
 ```Yaml
-efi_maintenance:
-    resource: "@EfiMaintenanceBundle/Resources/config/routing.yml"
+erfans_maintenance:
+    resource: "@ErfansMaintenanceBundle/Resources/config/routing.yml"
 ```    
 
 Step 4: Configuration
 ---------------------
 Default configuration is:
 ```Yaml
-efi_maintenance:
+erfans_maintenance:
     maintenance_mode:     false
 
     # After due-date maintenance mode will not invoke anymore. Date format should be 'YYYY-MM-DD' or 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD HH:MM:SS +/-TT:TT' or timestamp
@@ -65,8 +65,8 @@ efi_maintenance:
 
     # View parameters will set on default twig template of maintenance bundle. These values translate before rendering
     view:
-        title:                efi.maintenance.messages.under_construction.title
-        description:          efi.maintenance.messages.under_construction.description
+        title:                erfans.maintenance.messages.under_construction.title
+        description:          erfans.maintenance.messages.under_construction.description
 
     # If maintenance mode is false or it is after due date then it will redirect to below path or url by requesting maintenance page.
     redirect_on_normal:

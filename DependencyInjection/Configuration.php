@@ -1,6 +1,6 @@
 <?php
 
-namespace Efi\MaintenanceBundle\DependencyInjection;
+namespace Erfans\MaintenanceBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('efi_maintenance');
+        $rootNode = $treeBuilder->root('erfans_maintenance');
 
         $rootNode
             ->children()
@@ -41,10 +41,10 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode("title")
-                            ->defaultValue("efi.maintenance.messages.under_construction.title")
+                            ->defaultValue("erfans.maintenance.messages.under_construction.title")
                         ->end()
                         ->scalarNode("description")
-                            ->defaultValue("efi.maintenance.messages.under_construction.description")
+                            ->defaultValue("erfans.maintenance.messages.under_construction.description")
                         ->end()
                     ->end()
                 ->end()

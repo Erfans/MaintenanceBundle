@@ -1,6 +1,6 @@
 <?php
 
-namespace Efi\MaintenanceBundle\DependencyInjection;
+namespace Erfans\MaintenanceBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class EfiMaintenanceExtension extends Extension
+class ErfansMaintenanceExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -26,16 +26,16 @@ class EfiMaintenanceExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $definition = $container->getDefinition("efi.maintenance.maintenance_listener");
+        $definition = $container->getDefinition("erfans.maintenance.maintenance_listener");
         $definition->addArgument($config["maintenance_mode"]);
 
         $definition->addArgument($config["due_date"]);
         $definition->addArgument($config["authorized_users"]);
         $definition->addArgument($config["authorized_areas"]);
 
-        $container->setParameter("efi.maintenance.parameters.maintenance_mode", $config["maintenance_mode"]);
-        $container->setParameter("efi.maintenance.parameters.due_date", $config["due_date"]);
-        $container->setParameter("efi.maintenance.parameters.redirect_on_normal", $config["redirect_on_normal"]);
-        $container->setParameter("efi.maintenance.parameters.view", $config["view"]);
+        $container->setParameter("erfans.maintenance.parameters.maintenance_mode", $config["maintenance_mode"]);
+        $container->setParameter("erfans.maintenance.parameters.due_date", $config["due_date"]);
+        $container->setParameter("erfans.maintenance.parameters.redirect_on_normal", $config["redirect_on_normal"]);
+        $container->setParameter("erfans.maintenance.parameters.view", $config["view"]);
     }
 }

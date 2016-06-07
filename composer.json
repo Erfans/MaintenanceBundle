@@ -1,7 +1,7 @@
 {
-    "name": "efi/maintenance-bundle",
+    "name": "erfans/maintenance-bundle",
     "type": "symfony-bundle",
-    "description": "EfiMaintenanceBundle",
+    "description": "ErfansMaintenanceBundle",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
         "symfony/framework-bundle": "~2.3|~3.0"
     },
     "autoload": {
-        "psr-4": { "Efi\\MaintenanceBundle\\": "" }
+        "psr-4": { "Erfans\\MaintenanceBundle\\": "" }
     },
     "extra": {
         "branch-alias": {

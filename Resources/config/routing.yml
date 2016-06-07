@@ -1,4 +1,4 @@
-efi_maintenance:
-    resource: "@EfiMaintenanceBundle/Controller/"
+erfans_maintenance:
+    resource: "@ErfansMaintenanceBundle/Controller/"
     type:     annotation
     prefix:   /
