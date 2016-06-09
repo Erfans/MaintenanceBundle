@@ -26,16 +26,10 @@ class ErfansMaintenanceExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $definition = $container->getDefinition("erfans.maintenance.maintenance_listener");
-        $definition->addArgument($config["maintenance_mode"]);
+        $definition = $container->getDefinition("erfans.maintenance.maintenance");
+        $definition->addArgument($config);
 
-        $definition->addArgument($config["due_date"]);
-        $definition->addArgument($config["authorized_users"]);
-        $definition->addArgument($config["authorized_areas"]);
-
-        $container->setParameter("erfans.maintenance.parameters.maintenance_mode", $config["maintenance_mode"]);
-        $container->setParameter("erfans.maintenance.parameters.due_date", $config["due_date"]);
-        $container->setParameter("erfans.maintenance.parameters.redirect_on_normal", $config["redirect_on_normal"]);
-        $container->setParameter("erfans.maintenance.parameters.view", $config["view"]);
+        $container->setParameter("erfans.maintenance.parameters.view.title", $config["view"]["title"]);
+        $container->setParameter("erfans.maintenance.parameters.view.description", $config["view"]["description"]);
     }
 }

@@ -12,29 +12,11 @@ class MaintenanceController extends Controller
      */
     public function maintenanceAction()
     {
-
-        $maintenanceMode = $this->getParameter("erfans.maintenance.parameters.maintenance_mode");
-        $redirectOnNormal = $this->getParameter("erfans.maintenance.parameters.redirect_on_normal");
-        $dueDateTimestamp = $this->getParameter("erfans.maintenance.parameters.due_date");
-        $now = new \DateTime('now');
-
-        if ($redirectOnNormal["available"] && (!$maintenanceMode ||
-                ($dueDateTimestamp == null || $now->getTimestamp() > $dueDateTimestamp))
-        ) {
-            if (isset($redirectOnNormal["redirect_route"])) {
-                return $this->redirectToRoute($redirectOnNormal["redirect_route"]);
-            }
-
-            return $this->redirect($redirectOnNormal["redirect_url"]);
-        }
-
-        $view = $this->getParameter("erfans.maintenance.parameters.view");
-
         return $this->render(
             'ErfansMaintenanceBundle:Maintenance:maintenance.html.twig',
             [
-                "description" => $view ["description"],
-                "title" => $view ["title"],
+                "description" => $this->getParameter("erfans.maintenance.parameters.view.description"),
+                "title" => $this->getParameter("erfans.maintenance.parameters.view.title"),
             ]
         );
     }
