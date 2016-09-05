@@ -26,7 +26,7 @@ class ErfansMaintenanceExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $definition = $container->getDefinition("erfans.maintenance.maintenance");
+        $definition = $container->getDefinition("erfans.maintenance.maintenance_listener");
         $definition->addArgument($config);
 
         $container->setParameter("erfans.maintenance.parameters.view.title", $config["view"]["title"]);

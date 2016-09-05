@@ -5,12 +5,6 @@ services:
             - "@security.token_storage"
             - "@security.authorization_checker"
             - "@router"
-            - "@erfans.maintenance.maintenance"
+            - "%kernel.environment%"
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest}
-
-    erfans.maintenance.maintenance:
-        class: Erfans\MaintenanceBundle\Maintenance\Maintenance
-        public: false
-        arguments:
-            - "@router"
