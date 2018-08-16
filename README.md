@@ -1,4 +1,4 @@
-A bundle to add maintenance mode to Symfony project.
+A bundle to add maintenance mode to Symfony projects.
 
 Installation
 ============
@@ -53,41 +53,41 @@ erfans_maintenance:
     resource: "@ErfansMaintenanceBundle/Resources/config/routing.yml"
 ```    
 if you want to use your own controller and action for maintenance page 
-or use some external link or just an html page then you can skip this part. 
+or use some external links or just use an html page then you can skip this part. 
 
 Step 4: Configuration
 ---------------------
 To check if current request is under maintenance this bundle will check
-defined "include/exclude" rules under configuration part. This approach 
-will provide maximum flexibility to put part of your website under 
-maintenance mode or just exclude some pages from maintenance.
+a list of defined "include/exclude" rules in the bundle configuration. 
+This approach will provide maximum flexibility to put a part of your website 
+in the maintenance mode or just exclude some pages from the maintenance.
 
-To add a "include" rule set parameter "rule" to "+" and to add a exclude
-rule set "rule" to "-". Available variables for each rule to be check are:
+To add a "include" rule set parameter "rule" to "+" and to add an exclude
+rule set "rule" to "-". Available parameters for each rule are:
 ```
 rule: # One of "+"; "-", Required
 env:  # Requested environment e.g. "test" or ["dev", "prod"]
 path: # Regular expression for request path e.g. ^/* to cover all requests
-routes: # To compair with current route e.g. ["home_route"]
+routes: # To compair with requested route e.g. ["home_route"]
 host: # Requested host
 schemes: # e.g. http or https 
 methods: # Requested method e.g. ["get", "post"]
-usernames: # Username of current user            
-roles: # Role of current user               
-ips: # IP of visitor                
+usernames: # Username of the current user            
+roles: # Roles of the current user               
+ips: # IP of the visitor                
 ```
 
-If no rule will be defined default rules will be applied which are:
+The default rules are:
 ```
 rules:
     - {rule: '+', path: '^/*'} # include all paths into maintenance mode
-    - {rule: '-', path: '^/login$'} # exclude usual path for login from maintenance
-    - {rule: '-', roles: ['ROLE_ADMIN']} # exclude Admin role from maintenance
-    - {rule: '-', env: ['test', 'dev']} # exclude environments "test" and "dev" from maintenance 
+    - {rule: '-', path: '^/login$'} # exclude usual path for login from the maintenance
+    - {rule: '-', roles: ['ROLE_ADMIN']} # exclude Admin role from the maintenance
+    - {rule: '-', env: ['test', 'dev']} # exclude environments "test" and "dev" from the maintenance 
 ```
 
-Defining rules may seems too much effort for simple task, however, it is 
-handy when you want to develop new parts website without interfering other 
+Defining rules may seems too much effort for this simple task, however, it is 
+handy when you want to develop new parts of the website without interfering other 
 parts.
 
 Default configuration for "ErfansMaintenanceBundle":

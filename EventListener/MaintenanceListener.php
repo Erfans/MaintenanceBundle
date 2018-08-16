@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Erfan
- * Date: 6/5/2016
- * Time: 13:46
- */
 
 namespace Erfans\MaintenanceBundle\EventListener;
 
@@ -33,9 +27,9 @@ class MaintenanceListener
     private $currentEnv;
 
     public function __construct(
-        TokenStorage $tokenStorage,
-        AuthorizationChecker $authorizationChecker,
-        Router $router,
+        $tokenStorage,
+        $authorizationChecker,
+        $router,
         $currentEnv,
         array $configuration
     ) {

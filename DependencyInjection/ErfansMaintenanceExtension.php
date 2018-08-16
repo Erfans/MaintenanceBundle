@@ -2,7 +2,6 @@
 
 namespace Erfans\MaintenanceBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
