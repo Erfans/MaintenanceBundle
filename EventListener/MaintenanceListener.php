@@ -6,11 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestMatcher;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
-class MaintenanceListener
-{
+class MaintenanceListener {
+
     /** @var TokenStorage $tokenStorage */
     private $tokenStorage;
 
@@ -20,12 +21,21 @@ class MaintenanceListener
     /** @var  Router $router */
     private $router;
 
-    /** @var array $configuration */
-    private $configuration;
-
     /** @var string $currentEnv */
     private $currentEnv;
 
+    /** @var array $configuration */
+    private $configuration;
+
+    /**
+     * MaintenanceListener constructor.
+     *
+     * @param TokenStorage         $tokenStorage
+     * @param AuthorizationChecker $authorizationChecker
+     * @param Router               $router
+     * @param string               $currentEnv
+     * @param array                $configuration
+     */
     public function __construct(
         $tokenStorage,
         $authorizationChecker,
@@ -40,14 +50,13 @@ class MaintenanceListener
         $this->configuration = $configuration;
     }
 
-
     /**
      * Check maintenance mode config and due date to check current state
      *
      * @return bool
+     * @throws \Exception
      */
-    public function isInMaintenanceMode()
-    {
+    public function isInMaintenanceMode() {
         if (!$this->configuration["enabled"]) {
             return false;
         }
@@ -64,10 +73,9 @@ class MaintenanceListener
     /**
      * @return mixed|void
      */
-    protected function getUser()
-    {
+    protected function getUser() {
         if (!$this->tokenStorage) {
-            throw new \LogicException('The SecurityBundle is not registered in your application.');
+            return;
         }
 
         if (null === $token = $this->tokenStorage->getToken()) {
@@ -87,18 +95,17 @@ class MaintenanceListener
      *
      * @return string
      */
-    private function getMaintenanceUri()
-    {
+    private function getMaintenanceUri() {
         return isset($this->configuration["maintenance_url"]) ? $this->configuration["maintenance_url"] :
             $this->router->generate($this->configuration["maintenance_route"]);
     }
 
     /**
      * @param $rule
+     *
      * @return bool
      */
-    private function checkUser($rule)
-    {
+    private function checkUser($rule) {
         $user = $this->getUser();
 
         if (!empty($rule["usernames"])) {
@@ -114,11 +121,13 @@ class MaintenanceListener
             }
         }
 
-
         if (!empty($rule["roles"])) {
-            foreach ($rule["roles"] as $role) {
-                if ($this->authorizationChecker->isGranted($role)) {
-                    return true;
+
+            if ($this->authorizationChecker) {
+                foreach ($rule["roles"] as $role) {
+                    if ($this->authorizationChecker->isGranted($role)) {
+                        return true;
+                    }
                 }
             }
 
@@ -128,8 +137,12 @@ class MaintenanceListener
         return true;
     }
 
-    public function onKernelRequest(GetResponseEvent $event)
-    {
+    /**
+     * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+     *
+     * @throws \Exception
+     */
+    public function onKernelRequest(RequestEvent $event) {
         if (!$event->isMasterRequest()) {
             return;
         }
@@ -181,13 +194,13 @@ class MaintenanceListener
                 continue;
             }
 
-            $requestMatcher = new  RequestMatcher(
+            $requestMatcher = new RequestMatcher(
                 isset($rule["path"]) ? $rule["path"] : null,
                 isset($rule["host"]) ? $rule["host"] : null,
-                $rule["methods"],
-                $rule["ips"],
+                isset($rule["methods"]) ? $rule["methods"] : null,
+                isset($rule["ips"]) ? $rule["ips"] : null,
                 [],
-                $rule["schemes"]
+                isset($rule["schemes"]) ? $rule["schemes"] : null
             );
 
             if (

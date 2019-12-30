@@ -2,23 +2,44 @@
 
 namespace Erfans\MaintenanceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
-class MaintenanceController extends Controller
-{
+class MaintenanceController extends AbstractController{
+
     /**
-     * @Route("/maintenance", name="erfans_maintenance_maintenance")
+     * @var string $params
      */
-    public function maintenanceAction()
-    {
+    private $title;
+
+    /**
+     * @var string $description
+     */
+    private $description;
+
+    /**
+     * MaintenanceController constructor.
+     *
+     * @param string $title
+     * @param string $description
+     */
+    public function __construct($title, $description) {
+        $this->title = $title;
+        $this->description = $description;
+    }
+
+    /**
+     * @Route(path="/maintenance", name="erfans_maintenance_maintenance")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function maintenance() {
+
         return $this->render(
             'ErfansMaintenanceBundle:Maintenance:maintenance.html.twig',
             [
-                "description" => $this->getParameter("erfans.maintenance.parameters.view.description"),
-                "title" => $this->getParameter("erfans.maintenance.parameters.view.title"),
+                "title"       => $this->title,
+                "description" => $this->description,
             ]
         );
     }
-
 }

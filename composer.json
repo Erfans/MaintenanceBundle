@@ -4,20 +4,21 @@
     "version": "2.0.0",
     "type": "symfony-bundle",
     "keywords": [
-        "erfans",
+        "symfony",
         "maintenance"
     ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Erfans",
+            "name": "Erfan Shamabadi",
             "homepage": "https://github.com/Erfans"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/framework-bundle": "~2.3|~3.0|~4.0",
-        "symfony/security": "~3.0|~4.0"
+        "symfony/templating": "~3.0|~4.0|~5.0",
+        "symfony/translation": "~3.0|~4.0|~5.0",
+        "symfony/twig-bundle": "~3.0|~4.0|~5.0"
     },
     "autoload": {
         "psr-4": {

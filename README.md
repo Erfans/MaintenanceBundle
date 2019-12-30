@@ -1,4 +1,4 @@
-A bundle to add maintenance mode to Symfony projects.
+    A bundle to add maintenance mode to Symfony projects.
 
 Installation
 ============

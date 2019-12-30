@@ -7,11 +7,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * This is the class that loads and manages your bundle configuration.
- *
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
- */
 class ErfansMaintenanceExtension extends Extension
 {
     /**
@@ -25,7 +20,7 @@ class ErfansMaintenanceExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $definition = $container->getDefinition("erfans.maintenance.maintenance_listener");
+        $definition = $container->getDefinition("Erfans\MaintenanceBundle\EventListener\MaintenanceListener");
         $definition->addArgument($config);
 
         $container->setParameter("erfans.maintenance.parameters.view.title", $config["view"]["title"]);

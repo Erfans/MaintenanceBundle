@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('erfans_maintenance');
+        $treeBuilder = new TreeBuilder('erfans_maintenance');
+        $rootNode = $treeBuilder->getRootNode();
 
         //{env: env, route: route_name, path: path, url: url, role: user_role, username: user_username, ip: ip}
 

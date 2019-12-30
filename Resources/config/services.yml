@@ -1,10 +1,18 @@
 services:
-    erfans.maintenance.maintenance_listener:
-        class: Erfans\MaintenanceBundle\EventListener\MaintenanceListener
+    Erfans\MaintenanceBundle\EventListener\MaintenanceListener:
+        autowire: false
+        public: false
         arguments:
-            - "@security.token_storage"
-            - "@security.authorization_checker"
+            - "@=container.has('security.token_storage')?service('security.token_storage'):null"
+            - "@=container.has('security.authorization_checker')?service('security.authorization_checker'):null"
             - "@router"
             - "%kernel.environment%"
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest}
+
+    Erfans\MaintenanceBundle\Controller\MaintenanceController:
+        autowire: false
+        public: true
+        arguments:
+            - "%erfans.maintenance.parameters.view.title%"
+            - "%erfans.maintenance.parameters.view.description%"
