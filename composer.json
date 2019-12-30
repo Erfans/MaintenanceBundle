@@ -1,7 +1,7 @@
 {
     "name": "erfans/maintenance-bundle",
     "description": "A Symfony bundle to allow maintenance mode for website.",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "type": "symfony-bundle",
     "keywords": [
         "symfony",
@@ -27,7 +27,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.1-dev"
+            "dev-master": "2.1.0-dev"
         }
     }
 }

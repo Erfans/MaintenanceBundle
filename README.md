@@ -10,7 +10,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```bash
-$ composer require erfans/maintenance-bundle "~2.0"
+$ composer require erfans/maintenance-bundle "~2.1"
 ```
 
 This command requires you to have Composer installed globally, as explained
